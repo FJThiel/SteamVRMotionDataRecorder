@@ -1,0 +1,6 @@
+[submodule "thirdParty/glm"]
+	path = thirdParty/glm
+	url = git@github.com:g-truc/glm.git
+[submodule "thirdParty/openvr"]
+	path = thirdParty/openvr
+	url = https://github.com/ValveSoftware/openvr
