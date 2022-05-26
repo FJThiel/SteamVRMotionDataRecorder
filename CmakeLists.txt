@@ -1,0 +1,195 @@
+# Cmake file for the CopilotVR overlay
+# Parts of this file are taken from Cmake files of the official openvr repository 
+# because they are better at writing cmake than I am
+
+cmake_minimum_required(VERSION 3.0.2)
+
+# Include cmake modules
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+project(SteamVRMotionDataRecorder)
+
+
+## System properties
+
+# If not set, determines the running platform architecture.
+if(NOT PLATFORM)
+  if(CMAKE_SIZEOF_VOID_P MATCHES 8)
+    set(PLATFORM 64)
+  else()
+    set(PLATFORM 32)
+  endif()
+endif()
+message(STATUS "Compilation set for ${PLATFORM}bits architectures.")
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    message(WARNING "SteamVRMotionDataRecorder is currently untested under GNU/Linux. Build at your own danger")
+    add_definitions(-DLINUX -DPOSIX)
+    set(ARCH_TARGET linux64)
+
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    message(WARNING "SteamVRMotionDataRecorder is currently untested under MacOS. Build at your own danger")
+    set(CMAKE_MACOSX_RPATH 0)
+    add_definitions(-DOSX -DPOSIX)
+    set(ARCH_TARGET osx32)
+
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")    
+    add_definitions(-D_WIN32)
+    set(ARCH_TARGET win${PLATFORM})
+
+    # Binaries path for thirdparties are not generics so we try to guess their suffixes.
+    set(WINDOWS_PATH_SUFFIXES win${PLATFORM} Win${PLATFORM} x${PLATFORM})
+endif()
+
+
+## Paths
+
+set(THIRDPARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdParty)
+
+
+# Check that the steamVR SDK is installed 
+# (needed to prevent a segfault in OpenVR).
+if(CMAKE_HOST_UNIX)
+  find_file(OPENVRPATHS openvrpaths.vrpath PATHS $ENV{HOME}/.config/openvr "$ENV{HOME}/Library/Application Support/OpenVR/.openvr")
+  if(${OPENVRPATHS} MATCHES OPENVRPATHS-NOTFOUND)
+    message(FATAL_ERROR "${OPENVRPATHS} Please install SteamVR SDK to continue..")
+  endif()
+endif()
+
+# Default output directory.
+# Split into Debug, Release, and default (for when no debug/release is supported)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEFAULT ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/default)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEFAULT ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/default)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEFAULT ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/default)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/release)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/release)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/release)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/debug)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/debug)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET}/debug)
+
+# Force output directory destination, especially for MSVC (@so7747857).
+function(setTargetOutputDirectory target)
+  foreach(type RUNTIME LIBRARY ARCHIVE)
+    set_target_properties(${target} PROPERTIES
+      ${type}_OUTPUT_DIRECTORY         ${CMAKE_${type}_OUTPUT_DIRECTORY_DEFAULT}
+      ${type}_OUTPUT_DIRECTORY_DEBUG   ${CMAKE_${type}_OUTPUT_DIRECTORY_DEBUG}
+      ${type}_OUTPUT_DIRECTORY_RELEASE ${CMAKE_${type}_OUTPUT_DIRECTORY_RELEASE}
+    )
+  endforeach()
+endfunction()
+
+
+## Compiler Detection
+
+if(   (${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
+   OR (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang"))
+  # Better to use the prebuilt GNU preprocessor define __GNUC__,
+  # kept for legacy reason with the sample code.
+  add_definitions(-DGNUC)
+
+  set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -std=c++11")
+  set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -pedantic -g")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+
+  # Handles x86 compilation support on x64 arch.
+  if(${PLATFORM} MATCHES 32)
+    set(CMAKE_CXX_FLAGS        "${CMAKE_CXX_FLAGS} -m32")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m32")
+  endif()
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+  set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /W2 /DEBUG")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MP /INCREMENTAL:NO")
+else()
+  message(FATAL_ERROR "Unsupported compiler '${CMAKE_CXX_COMPILER_ID}'")
+endif()
+
+
+## Libraries
+
+
+
+## OpenVR API path
+
+find_library(OPENVR_LIBRARIES
+  NAMES
+    openvr_api
+  PATHS
+    ${THIRDPARTY_DIR}/openvr/bin
+    ${THIRDPARTY_DIR}/openvr/lib    
+  PATH_SUFFIXES
+    osx32
+    linux64
+    ${WINDOWS_PATH_SUFFIXES}
+  NO_DEFAULT_PATH
+  NO_CMAKE_FIND_ROOT_PATH
+)
+set(OPENVR_INCLUDE_DIR ${THIRDPARTY_DIR}/openvr/headers)
+
+
+include_directories(
+  .
+  ${QT_INCLUDE_DIRS}
+  ${OPENVR_INCLUDE_DIR}
+)
+
+
+## Target Definition 
+
+set(TARGET_NAME SteamVRMotionDataRecorder)
+
+if(APPLE)
+  if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    find_library(FOUNDATION_FRAMEWORK Foundation)
+    mark_as_advanced(FOUNDATION_FRAMEWORK)
+    set(EXTRA_LIBS ${EXTRA_LIBS} ${FOUNDATION_FRAMEWORK})
+  endif()
+endif()
+
+
+add_executable(${TARGET_NAME}
+  SteamVRDeviceCMD.cpp  
+)
+
+
+target_link_libraries(${TARGET_NAME}  
+  ${OPENVR_LIBRARIES}
+  ${CMAKE_DL_LIBS}
+  ${EXTRA_LIBS} 
+)
+
+
+setTargetOutputDirectory(${TARGET_NAME})
+
+
+## Copy libraries files into build directory
+
+
+set(OPENVR_BIN_DIR ${THIRDPARTY_DIR}/openvr/bin/${ARCH_TARGET})
+
+# Release
+file(COPY ${OPENVR_BIN_DIR}/openvr_api.dll DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}) # OpenVR API
+
+# Debug
+file(COPY ${OPENVR_BIN_DIR}/openvr_api.dll DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG}) # OpenVR API
+
+
+# Default (both release and debug libs are copied)
+file(COPY ${OPENVR_BIN_DIR}/openvr_api.dll DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEFAULT}) # OpenVR API
+
+
+## Copy binding files into build directory
+
+# Release
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Bindings DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE})
+
+# Debug
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Bindings DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG})
+
+# Default
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Bindings DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEFAULT})
+
+# For Execution out of VS
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Bindings DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/build)
