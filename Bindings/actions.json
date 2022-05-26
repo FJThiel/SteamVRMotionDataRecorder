@@ -1,0 +1,235 @@
+{
+    "actions": [
+        {
+            "name": "/actions/main/in/ControllerLeftButtonTrigger",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonGrip",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonTouchpad",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonJoystick",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonButtonA",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonButtonB",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonButtonSystem",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftButtonButtonMenu",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftAxisTrigger",
+            "requirement": "optional",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftAxisGrip",
+            "requirement": "optional",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftAxisJoystick",
+            "requirement": "optional",
+            "type": "vector2"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftAxisTouchpad",
+            "requirement": "optional",
+            "type": "vector2"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedTrigger",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedGrip",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedTouchpad",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedJoystick",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedButtonA",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedButtonB",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedButtonSystem",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftTouchedButtonMenu",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerLeftSqueezedGrip",
+            "requirement": "optional",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonTrigger",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonGrip",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonTouchpad",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonJoystick",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonButtonA",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonButtonB",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonButtonSystem",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightButtonButtonMenu",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightAxisTrigger",
+            "requirement": "optional",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightAxisGrip",
+            "requirement": "optional",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightAxisJoystick",
+            "requirement": "optional",
+            "type": "vector2"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightAxisTouchpad",
+            "requirement": "optional",
+            "type": "vector2"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedTrigger",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedGrip",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedTouchpad",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedJoystick",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedButtonA",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedButtonB",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedButtonSystem",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightTouchedButtonMenu",
+            "requirement": "optional",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/ControllerRightSqueezedGrip",
+            "requirement": "optional",
+            "type": "vector1"
+        }
+    ],
+    "default_bindings": [
+        {
+            "binding_url": "binding_knuckles.json",
+            "controller_type": "knuckles"
+        },
+        {
+            "binding_url": "binding_oculus_touch.json",
+            "controller_type": "oculus_touch"
+        },
+        {
+            "binding_url": "binding_vive_controller.json",
+            "controller_type": "vive_controller"
+        }
+    ],
+    "localization": [
+        {
+            "/actions/main": "My Game Actions",
+            "/actions/main/in/Controller": "Controller Actions",            
+            "language_tag": "en_us"
+        }
+    ]
+}

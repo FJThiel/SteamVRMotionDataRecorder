@@ -1,0 +1,281 @@
+{
+   "action_manifest_version" : 0,
+   "alias_info" : {},
+   "app_key" : "system.generated.steamvrdevicecmd.exe",
+   "bindings" : {
+      "/actions/main" : {
+         "sources" : [
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonbuttonsystem"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedbuttonsystem"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/system"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttontrigger"
+                  },
+                  "pull" : {
+                     "output" : "/actions/main/in/controllerleftaxistrigger"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedtrigger"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttontouchpad"
+                  },
+                  "position" : {
+                     "output" : "/actions/main/in/controllerleftaxistouchpad"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedtouchpad"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonjoystick"
+                  },
+                  "position" : {
+                     "output" : "/actions/main/in/controllerleftaxisjoystick"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedjoystick"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonbuttonb"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedbuttonb"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonbuttona"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedbuttona"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/a"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttongrip"
+                  },
+                  "pull" : {
+                     "output" : "/actions/main/in/controllerleftaxisgrip"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedgrip"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/left/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttonbuttonsystem"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedbuttonsystem"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/system"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttontrigger"
+                  },
+                  "pull" : {
+                     "output" : "/actions/main/in/controllerrightaxistrigger"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedtrigger"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttontouchpad"
+                  },
+                  "position" : {
+                     "output" : "/actions/main/in/controllerrightaxistouchpad"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedtouchpad"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttonjoystick"
+                  },
+                  "position" : {
+                     "output" : "/actions/main/in/controllerrightaxisjoystick"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedjoystick"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttonbuttonb"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedbuttonb"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttonbuttona"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedbuttona"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/a"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttongrip"
+                  },
+                  "pull" : {
+                     "output" : "/actions/main/in/controllerrightaxisgrip"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedgrip"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonjoystick"
+                  },
+                  "position" : {
+                     "output" : "/actions/main/in/controllerleftaxisjoystick"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedjoystick"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/joystick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonbuttona"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedbuttona"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/x"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonbuttonb"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerlefttouchedbuttonb"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/y"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttonjoystick"
+                  },
+                  "position" : {
+                     "output" : "/actions/main/in/controllerrightaxisjoystick"
+                  },
+                  "touch" : {
+                     "output" : "/actions/main/in/controllerrighttouchedjoystick"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/joystick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerleftbuttonbuttonmenu"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/main/in/controllerrightbuttonbuttonmenu"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/application_menu"
+            }
+         ]
+      }
+   },
+   "category" : "steamvr_input",
+   "controller_type" : "vive_controller",
+   "description" : "",
+   "name" : "Recorder Default Bindings Vive Wands",
+   "options" : {},
+   "simulated_actions" : []
+}
